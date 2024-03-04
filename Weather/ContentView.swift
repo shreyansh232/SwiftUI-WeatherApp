@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, .white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(gradient: Gradient(colors: [.blue, Color("lightblue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
             .edgesIgnoringSafeArea(.all) //This ignores all the safe area and fills it completely
             VStack{
                 Text("Hisar, Haryana")
@@ -30,13 +30,13 @@ struct ContentView: View {
                         .font(.system(size: 70, weight: .medium))
                         .foregroundColor(.white)
                 }
-                Spacer()
+                .padding(.bottom, 40)
                 HStack(spacing: 20){
-                    WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.fill", temperature: 16)
-                    WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.fill", temperature: 16)
-                    WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.fill", temperature: 16)
-                    WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.fill", temperature: 16)
-                    WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.fill", temperature: 16)
+                    WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.rain.fill", temperature: 8)
+                    WeatherDayView(dayOfWeek: "WED", imageName: "sun.haze.fill", temperature: 10)
+                    WeatherDayView(dayOfWeek: "THU", imageName: "wind.snow", temperature: 5)
+                    WeatherDayView(dayOfWeek: "FRI", imageName: "snowflake", temperature: -1)
+                    WeatherDayView(dayOfWeek: "SAT", imageName: "cloud.moon.rain.fill", temperature: 4)
                     }
                 Spacer()//Fill the entire space
                 
