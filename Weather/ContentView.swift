@@ -16,8 +16,12 @@ struct ContentView: View {
                 Text("Hisar, Haryana")
                     .font(.system(size: 32, weight: .medium, design: .default))
                     .foregroundColor(.white)
+                    .padding()
 //                    .background(.red)
 //                    .frame(width: 200, height: 200) // This shows order of modifiers matter
+                Spacer()//Fill the entire space
+                
+                
                 
                 
                 
