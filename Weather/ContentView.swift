@@ -19,17 +19,25 @@ struct ContentView: View {
                     .padding()
 //                    .background(.red)
 //                    .frame(width: 200, height: 200) // This shows order of modifiers matter
+                
+                VStack(spacing: 8){
+                    Image(systemName: "cloud.sun.fill")
+                        .renderingMode(.original)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 180, height: 180)
+                    Text("18°")
+                        .font(.system(size: 70, weight: .medium))
+                        .foregroundColor(.white)
+                    
+                    
+                    
+                    
+                    
+                }
                 Spacer()//Fill the entire space
                 
-                
-                
-                
-                
-                
-                
             }
-            
-            
             
             
         }
