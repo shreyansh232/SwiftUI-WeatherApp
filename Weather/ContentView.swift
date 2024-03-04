@@ -49,7 +49,7 @@ struct CityWeatherView: View {
                 CityTextView(cityName: cityName)
                 
                 MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill",
-                                      temperature: isNight ? 10 : 18)
+                                      temperature: isNight ? 10 : temperature)
                 
                 HStack(spacing: 20) {
                     WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.rain.fill", temperature: 8)
