@@ -10,8 +10,20 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            Color(.blue)
+            LinearGradient(gradient: Gradient(colors: [.blue, .white]), startPoint: .topLeading, endPoint: .bottomTrailing)
             .edgesIgnoringSafeArea(.all) //This ignores all the safe area and fills it completely
+            VStack{
+                Text("Hisar, Haryana")
+                    .font(.system(size: 32, weight: .medium, design: .default))
+                    .foregroundColor(.white)
+//                    .background(.red)
+//                    .frame(width: 200, height: 200) // This shows order of modifiers matter
+                
+                
+                
+                
+                
+            }
             
             
             
