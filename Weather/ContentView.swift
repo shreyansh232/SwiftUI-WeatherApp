@@ -10,8 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, Color("lightblue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
-            .edgesIgnoringSafeArea(.all) //This ignores all the safe area and fills it completely
+            ExtractedView() //This ignores all the safe area and fills it completely
             VStack{
                 Text("Hisar, Haryana")
                     .font(.system(size: 32, weight: .medium, design: .default))
@@ -89,5 +88,15 @@ struct WeatherDayView: View {
                 .foregroundColor(.white)
             
         }
+    }
+}
+
+struct BackgroundView: View {
+    var body: some View {
+        var topColor: Color
+        var bottomColor: Color
+        
+        LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            .edgesIgnoringSafeArea(.all)
     }
 }
