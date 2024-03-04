@@ -9,41 +9,25 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isNight = false //checks if it's true or false and changes on the basis of that
+    
     var body: some View {
-        ZStack {
-            BackgroundView(isNight: $isNight)
-            VStack{
-                CityTextView(cityName: "Hisar, Haryana")
-                
-                MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill",
-                                      temperature: isNight ? 10 : 18)
-                
-                HStack(spacing: 20){
-                    WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.rain.fill", temperature: 8)
-                    WeatherDayView(dayOfWeek: "WED", imageName: "sun.haze.fill", temperature: 10)
-                    WeatherDayView(dayOfWeek: "THU", imageName: "wind.snow", temperature: 5)
-                    WeatherDayView(dayOfWeek: "FRI", imageName: "snowflake", temperature: -1)
-                    WeatherDayView(dayOfWeek: "SAT", imageName: "sun.max.fill", temperature: 10)
-                    }
-                Spacer()//Fill the entire space
-                
-                Button{
-                    isNight.toggle()
-                    
-                } label: {
-                    WeatherButton(title: isNight ? "Night" : "Switch", textColor: .blue, backgroundColor: .white)
+        TabView {
+            CityWeatherView(cityName: "Hisar", isNight: $isNight)
+                .tabItem {
+                    Label("Hisar", systemImage: "location.circle")
                 }
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 15)
-//                        .stroke(Color.black, lineWidth: 0.5)
-//                )
-                Spacer()
-                
-                
-            }
             
+            CityWeatherView(cityName: "New York", isNight: $isNight)
+                .tabItem {
+                    Label("New York", systemImage: "location.circle")
+                }
+            CityWeatherView(cityName: "London", isNight: $isNight)
+                .tabItem {
+                    Label("London", systemImage: "location.circle")
+                }
             
         }
+        .accentColor(isNight ? .white : .blue)
     }
 }
 
@@ -52,6 +36,40 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+struct CityWeatherView: View {
+    var cityName: String
+    @Binding var isNight: Bool
+    
+    var body: some View {
+        ZStack {
+            BackgroundView(isNight: $isNight)
+            VStack {
+                CityTextView(cityName: cityName)
+                
+                MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill",
+                                      temperature: isNight ? 10 : 18)
+                
+                HStack(spacing: 20) {
+                    WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.rain.fill", temperature: 8)
+                    WeatherDayView(dayOfWeek: "WED", imageName: "sun.haze.fill", temperature: 10)
+                    WeatherDayView(dayOfWeek: "THU", imageName: "wind.snow", temperature: 5)
+                    WeatherDayView(dayOfWeek: "FRI", imageName: "snowflake", temperature: -1)
+                    WeatherDayView(dayOfWeek: "SAT", imageName: "sun.max.fill", temperature: 10)
+                }
+                Spacer()
+                
+                Button {
+                    isNight.toggle()
+                } label: {
+                    WeatherButton(title: isNight ? "Night" : "Switch", textColor: .blue, backgroundColor: .white)
+                }
+                Spacer()
+            }
+        }
+    }
+}
+
 
 struct WeatherDayView: View {
     var dayOfWeek: String
