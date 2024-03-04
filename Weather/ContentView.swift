@@ -10,26 +10,12 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            ExtractedView() //This ignores all the safe area and fills it completely
+            BackgroundView(topColor: .blue, bottomColor: Color("lightblue"))
             VStack{
-                Text("Hisar, Haryana")
-                    .font(.system(size: 32, weight: .medium, design: .default))
-                    .foregroundColor(.white)
-                    .padding()
-//                    .background(.red)
-//                    .frame(width: 200, height: 200) // This shows order of modifiers matter
+                CityTextView(cityName: "Hisar, Haryana")
                 
-                VStack(spacing: 8){
-                    Image(systemName: "cloud.sun.fill")
-                        .renderingMode(.original)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 180, height: 180)
-                    Text("18°")
-                        .font(.system(size: 70, weight: .medium))
-                        .foregroundColor(.white)
-                }
-                .padding(.bottom, 40)
+                MainWeatherStatusView(imageName: "cloud.sun.fill", temperature: 18)
+                
                 HStack(spacing: 20){
                     WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.rain.fill", temperature: 8)
                     WeatherDayView(dayOfWeek: "WED", imageName: "sun.haze.fill", temperature: 10)
@@ -43,11 +29,7 @@ struct ContentView: View {
                     print("tapped")
                     
                 } label: {
-                    Text("Switch")
-                        .frame(width: 200, height: 50)
-                        .background(Color.white)
-                        .font(.system(size: 20, weight: .bold, design: .default))
-                        .cornerRadius(15)
+                    WeatherButton(title: "Switch", textColor: .blue, backgroundColor: .white)
                 }
 //                .overlay(
 //                    RoundedRectangle(cornerRadius: 15)
@@ -92,11 +74,55 @@ struct WeatherDayView: View {
 }
 
 struct BackgroundView: View {
+    var topColor: Color
+    var bottomColor: Color
     var body: some View {
-        var topColor: Color
-        var bottomColor: Color
-        
         LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]), startPoint: .topLeading, endPoint: .bottomTrailing)
-            .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.all) //This ignores all the safe area and fills it completely
+    }
+}
+
+struct CityTextView: View {
+    var cityName: String
+    var body: some View{
+        Text(cityName)
+            .font(.system(size: 32, weight: .medium, design: .default))
+            .foregroundColor(.white)
+            .padding()
+//                    .background(.red)
+//                    .frame(width: 200, height: 200) // This shows order of modifiers matter
+    }
+}
+
+
+struct MainWeatherStatusView: View {
+    var imageName: String
+    var temperature: Int
+    var body: some View{
+        VStack(spacing: 10){
+            Image(systemName: imageName)
+                .renderingMode(.original)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 180, height: 180)
+            Text("\(temperature)°")
+                .font(.system(size: 70, weight: .medium))
+                .foregroundColor(.white)
+        }
+        .padding(.bottom, 40)
+        
+    }
+}
+struct WeatherButton: View{
+    var title: String
+    var textColor: Color //We have assigned Color to our custom color(lightblue)
+    var backgroundColor: Color
+    var body: some View{
+        Text(title)
+            .frame(width: 200, height: 50)
+            .foregroundColor(textColor)
+            .background(backgroundColor)
+            .font(.system(size: 20, weight: .bold, design: .default))
+            .cornerRadius(15)
     }
 }
