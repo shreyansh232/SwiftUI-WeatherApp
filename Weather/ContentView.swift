@@ -11,7 +11,10 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Color(.blue)
-                .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.all) //This ignores all the safe area and fills it completely
+            
+            
+            
             
         }
     }
