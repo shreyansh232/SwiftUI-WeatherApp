@@ -8,28 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isNight = false //checks if it's true or false and changes on the basis of that
     var body: some View {
         ZStack {
-            BackgroundView(topColor: .blue, bottomColor: Color("lightblue"))
+            BackgroundView(isNight: $isNight)
             VStack{
                 CityTextView(cityName: "Hisar, Haryana")
                 
-                MainWeatherStatusView(imageName: "cloud.sun.fill", temperature: 18)
+                MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill",
+                                      temperature: isNight ? 10 : 18)
                 
                 HStack(spacing: 20){
                     WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.rain.fill", temperature: 8)
                     WeatherDayView(dayOfWeek: "WED", imageName: "sun.haze.fill", temperature: 10)
                     WeatherDayView(dayOfWeek: "THU", imageName: "wind.snow", temperature: 5)
                     WeatherDayView(dayOfWeek: "FRI", imageName: "snowflake", temperature: -1)
-                    WeatherDayView(dayOfWeek: "SAT", imageName: "cloud.moon.rain.fill", temperature: 4)
+                    WeatherDayView(dayOfWeek: "SAT", imageName: "sun.max.fill", temperature: 10)
                     }
                 Spacer()//Fill the entire space
                 
                 Button{
-                    print("tapped")
+                    isNight.toggle()
                     
                 } label: {
-                    WeatherButton(title: "Switch", textColor: .blue, backgroundColor: .white)
+                    WeatherButton(title: isNight ? "Night" : "Switch", textColor: .blue, backgroundColor: .white)
                 }
 //                .overlay(
 //                    RoundedRectangle(cornerRadius: 15)
@@ -74,10 +76,11 @@ struct WeatherDayView: View {
 }
 
 struct BackgroundView: View {
-    var topColor: Color
-    var bottomColor: Color
+    @Binding var isNight: Bool
+//    var topColor: Color
+//    var bottomColor: Color
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightblue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
             .edgesIgnoringSafeArea(.all) //This ignores all the safe area and fills it completely
     }
 }
@@ -113,16 +116,4 @@ struct MainWeatherStatusView: View {
         
     }
 }
-struct WeatherButton: View{
-    var title: String
-    var textColor: Color //We have assigned Color to our custom color(lightblue)
-    var backgroundColor: Color
-    var body: some View{
-        Text(title)
-            .frame(width: 200, height: 50)
-            .foregroundColor(textColor)
-            .background(backgroundColor)
-            .font(.system(size: 20, weight: .bold, design: .default))
-            .cornerRadius(15)
-    }
-}
+
