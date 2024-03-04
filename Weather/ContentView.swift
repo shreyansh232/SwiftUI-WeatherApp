@@ -29,12 +29,20 @@ struct ContentView: View {
                     Text("18°")
                         .font(.system(size: 70, weight: .medium))
                         .foregroundColor(.white)
-                    
-                    
-                    
-                    
-                    
                 }
+                    HStack{
+                        Text("TUE")
+                            .foregroundColor(.white)
+                        Text("WED")
+                            .foregroundColor(.white)
+                        Text("THU")
+                            .foregroundColor(.white)
+                        Text("FRI")
+                            .foregroundColor(.white)
+                        Text("SAT")
+                            .foregroundColor(.white)
+                        
+                    }
                 Spacer()//Fill the entire space
                 
             }
