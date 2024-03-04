@@ -40,6 +40,16 @@ struct ContentView: View {
                     }
                 Spacer()//Fill the entire space
                 
+                Button{
+                    print("tapped")
+                    
+                } label: {
+                    Text("Change Day Time")
+                    
+                }
+                Spacer()
+                
+                
             }
             
             
