@@ -12,16 +12,16 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            CityWeatherView(cityName: "Hisar", isNight: $isNight)
+            CityWeatherView(cityName: "Hisar", temperature: 18, isNight: $isNight)
                 .tabItem {
                     Label("Hisar", systemImage: "location.circle")
                 }
             
-            CityWeatherView(cityName: "New York", isNight: $isNight)
+            CityWeatherView(cityName: "New York", temperature: 20, isNight: $isNight)
                 .tabItem {
                     Label("New York", systemImage: "location.circle")
                 }
-            CityWeatherView(cityName: "London", isNight: $isNight)
+            CityWeatherView(cityName: "London", temperature: 15, isNight: $isNight)
                 .tabItem {
                     Label("London", systemImage: "location.circle")
                 }
@@ -39,6 +39,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct CityWeatherView: View {
     var cityName: String
+    var temperature: Int
     @Binding var isNight: Bool
     
     var body: some View {
